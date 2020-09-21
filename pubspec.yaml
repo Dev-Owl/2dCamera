@@ -23,6 +23,8 @@ environment:
 dependencies:
   flame: ^0.26.0
   wakelock: ^0.1.4+2
+  vector_math: ^2.0.8
+  matrix4_transform: ^1.1.5
   flutter:
     sdk: flutter
   
@@ -43,6 +45,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/water_tileset.png
+    - assets/images/water_tileset2.png
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

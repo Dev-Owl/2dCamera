@@ -68,6 +68,7 @@ class BattleCaptain extends Game with TapDetector, ScaleDetector {
     map = WorldMap(this);
     await map.initMap();
     ready = true;
+    
   }
 
   void resize(Size size) {
@@ -124,8 +125,11 @@ class BattleCaptain extends Game with TapDetector, ScaleDetector {
   @override
   void onTapDown(TapDownDetails details) {
     var now = DateTime.now().millisecondsSinceEpoch;
+    debugPrint(details.globalPosition.toString());
     if (now - lastTapDown < 250) {
       debugPrint('double tap');
+      camera.scalePoint = details.globalPosition;
+      
       camera.changeScale(max(1, (camera.scale + 1) % (Camera.MaxScale + 1)));
     }
     lastTapDown = now;
@@ -158,9 +162,10 @@ class BattleCaptain extends Game with TapDetector, ScaleDetector {
       scaleDiff = scaleDiff.isNegative ? -0.03 : 0.03;
     }
     if (scaleDiff != 0) {
+      camera.scalePoint = details.focalPoint;
       camera.changeScale(camera.scale + scaleDiff);
     } else {
-      camera.moveBy(delta.dx.floor(), delta.dy.floor());
+      camera.moveBy(delta.dx, delta.dy);
     }
   }
 }
